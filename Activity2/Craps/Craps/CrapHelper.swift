@@ -10,8 +10,14 @@ import Foundation
 
 enum DiceInterface:Int {
     case one=1,two,three,four,five,six
+    
+    static func random() -> DiceInterface {
+        let dices = [DiceInterface.one, DiceInterface.two, DiceInterface.three, DiceInterface.four, DiceInterface.five, DiceInterface.six]
+        let index = Int(arc4random_uniform(UInt32(dices.count)))
+        return dices[index]
+    }
 }
 
 func randomDices() -> (DiceInterface,DiceInterface) {
-    return (.two,.five)
+    return (DiceInterface.random(),DiceInterface.random())
 }
